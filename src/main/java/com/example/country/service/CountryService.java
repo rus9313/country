@@ -9,5 +9,5 @@ public interface CountryService {
     List<Country> allCountries();
     CountryEntity add(CountryEntity country);
     CountryEntity update(CountryEntity country);
-
+    Country findById(String id);
 }

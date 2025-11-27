@@ -3,6 +3,7 @@ package com.example.country.service;
 import com.example.country.data.CountryEntity;
 import com.example.country.data.CountryRepository;
 import com.example.country.domain.Country;
+import com.example.country.ex.CountryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,16 @@ public class DbCountryService implements CountryService {
                         countryEntity.getCode()
                 ))
                 .toList();
+    }
+
+    @Override
+    public Country findById(String id) {
+        return countryRepository.findById(UUID.fromString(id))
+                .map(countryEntity -> new Country(
+                        countryEntity.getName(),
+                        countryEntity.getCode()
+                )).orElseThrow(CountryNotFoundException::new);
+
     }
 
     @Override

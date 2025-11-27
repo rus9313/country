@@ -24,6 +24,11 @@ public class CountryController {
         return countryService.allCountries();
     }
 
+    @GetMapping("/{id}")
+    public Country byId(@PathVariable("id") String id) {
+        return countryService.findById(id);
+    }
+
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public CountryEntity add(@RequestBody CountryEntity newCountry) {
