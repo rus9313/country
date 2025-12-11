@@ -26,7 +26,7 @@ public class CountryController {
 
     @GetMapping("/{id}")
     public Country byId(@PathVariable("id") String id) {
-        return countryService.findById(id);
+        return countryService.countryById(id);
     }
 
     @PostMapping("/add")
